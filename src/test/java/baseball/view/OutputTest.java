@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class OutputTest {
 
@@ -18,8 +18,12 @@ class OutputTest {
         System.setOut(new PrintStream(outputStream));
 
         Output.printlnMessage("Test Message");
+        assertThat("Test Message\n").isEqualTo(outputStream.toString());
 
-        assertEquals("Test Message", outputStream.toString().trim());
+        outputStream.reset();
+
+        Output.printMessage("Test Message");
+        assertThat("Test Message").isEqualTo(outputStream.toString());
 
         System.setOut(original);
     }

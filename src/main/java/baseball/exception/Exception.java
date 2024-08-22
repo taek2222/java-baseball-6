@@ -1,5 +1,7 @@
 package baseball.exception;
 
+import java.util.HashSet;
+
 import static baseball.constant.GameConstant.*;
 
 public class Exception {
@@ -28,22 +30,18 @@ public class Exception {
 
     // 중복된 숫자가 존재할 경우
     private void duplicationCheck(String input) {
-        for (int i = 0; i < BALL_MAX; i++) {
-            char c = input.charAt(i);
-            for(int j = 0; j < BALL_MAX; j++) {
-                if(i == j)
-                    continue;
+        HashSet<Character> numbers = new HashSet<>();
 
-                if (input.charAt(j) == c)
-                    throw new IllegalArgumentException();
-            }
-        }
+        for (int i = 0; i < BALL_MAX; i++)
+            numbers.add(input.charAt(i));
+
+        if (numbers.size() != BALL_MAX)
+            throw new IllegalArgumentException();
     }
 
     // 게임 종료 후 입력이 1 or 2가 아닌 경우
-    public String endInputCheck(String input) {
+    public void endInputCheck(String input) {
         if (!input.equals(RESTART) && !input.equals(EXIT))
             throw new IllegalArgumentException();
-        return input;
     }
 }

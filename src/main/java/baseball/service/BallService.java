@@ -6,6 +6,7 @@ import baseball.model.UserBall;
 
 import static baseball.constant.GameConstant.*;
 import static baseball.constant.ViewConstant.*;
+import static baseball.constant.VerdictConstant.*;
 import static baseball.view.Input.readInput;
 import static baseball.view.Output.printlnMessage;
 import static baseball.view.Output.printMessage;
@@ -60,13 +61,13 @@ public class BallService {
 
     private void printStrikeBall(int ball, int strike) {
         if (ball > 0)
-            printMessage(ball + BALL.getMessage());
+            printMessage(ball + BALL.getVerdict());
 
         if (strike > 0)
-            printMessage(strike + STRIKE.getMessage());
+            printMessage(strike + STRIKE.getVerdict());
 
         if(ball == 0 && strike == 0)
-            printMessage(NOTHING.getMessage());
+            printMessage(NOTHING.getVerdict());
 
         printlnMessage("");
     }
